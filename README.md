@@ -24,8 +24,8 @@ The experiments can be run with different modality, the basic command is:
     python main.py +preset=<preset> seed=<seed> mode=<mode>
 ```
 where the value preset could be chosen between qm9_distance and gdb13_distance.
-After the \<preset\> it's possible to choose the \<seed\>, the modality of running \<mode\> between \<eval\>, \<train+eval\> and \<train\>. The defaulf values are <mode>=eval and <seed>=0.
-All the parameters relative to the training and evaluation phase could be seen inside ./config\ folder.
+After the \<preset\> it's possible to choose the \<seed\>, the modality of running \<mode\> between \<eval\>, \<train+eval\> and \<train\>. The defaulf values are mode=eval and seed=0.
+All the parameters relative to the training and evaluation phase could be seen inside ./config/ folder.
 
 ### Datasets
 
@@ -35,4 +35,4 @@ Regarding GDB13 only a random subset of the entire dataset is used, for reproduc
 ### Checkpoints
 
 Checkpoints are present in a shared folder on google drive (https://drive.google.com/drive/folders/1SO7mIvRe7mZjPZ8WF14Ygo6pyK5OY3-_?usp=sharing). To run them they should be downloaded and 
-placed in a ./checkpoints/ folder.
+placed in the ./checkpoints folder.
