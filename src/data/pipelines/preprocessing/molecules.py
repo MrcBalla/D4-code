@@ -219,7 +219,7 @@ class QM9PreprocessingPipeline:
                                     which=['Formal_charge']
                                 ),   
 
-                                chem_t.DFToGraph(
+                                chem_t.DFToGraph_qm9(
                                     'attribute_edge', "attribute_node", "pos",
                                     result_df =             'res_graph',
                                     nodes_df =              'curr_nodes',
@@ -527,7 +527,7 @@ class GDB13PreprocessingPipeline:
                                     which=['Formal_charge']
                                 ),   
                         
-                        chem_t.DFToGraph(
+                        chem_t.DFToGraph_gdb13(
                                     'attribute_edge', "attribute_node", "pos",
                                     result_df =             'res_graph',
                                     nodes_df =              'curr_nodes',

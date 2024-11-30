@@ -810,6 +810,179 @@ class DFGraphToMol(DFBaseTransform):
                 f'relaxed={self.relaxed}'
             )
 
+
+class DFToGraph_qm9(DFBaseTransform):
+
+    def __init__(
+            self,
+            *others_df,
+            result_df: str,
+            nodes_df: str,
+            edge_index_df: str,
+            edge_attr_df: str,
+            targets_df: str,
+            atom_types: str,
+            remove_hydrogen: bool
+        ):
+
+        # datafield where to put the resulting graph
+        self.result_df = result_df
+
+        # main graph components
+        self.nodes_df = nodes_df
+        self.edge_index_df = edge_index_df
+        self.edge_attr_df = edge_attr_df
+        self.targets_df = targets_df
+
+        # other datafields
+        self.others_df = others_df
+
+        self.atom_types= atom_types
+        
+        self.remove_hydrogen = remove_hydrogen
+
+
+    def __call__(
+            self,
+            data: Dict,
+        ) -> Dict:
+
+        y = data[self.targets_df]
+
+        if not isinstance(y, torch.Tensor):
+            y = torch.tensor(y, dtype=torch.float)
+
+        graph = SparseGraph(
+            x=			data[self.nodes_df],
+            edge_index=	data[self.edge_index_df],
+            edge_attr=	data[self.edge_attr_df],
+            y=			y,
+            **{df: data[df] for df in self.others_df}
+        )
+        if self.remove_hydrogen:
+            if 'H' in data[self.atom_types].keys() and data[self.atom_types]['H'] in data[self.nodes_df]:
+                index = data[self.atom_types]['H']
+                to_keep = (graph.x != index)
+                new_edge_index, new_edge_attr = subgraph(to_keep, graph.edge_index, graph.edge_attr, relabel_nodes=True,
+                                                num_nodes=len(to_keep))
+                new_pos = graph.pos[to_keep] - torch.mean(graph.pos[to_keep], dim=0)
+                
+                data['attribute_node']=graph.attribute_node[to_keep]
+                data['pos']=new_pos
+                
+                dist_mask = to_keep.repeat(len(to_keep)).reshape(len(to_keep), len(to_keep))*\
+                    to_keep.repeat(len(to_keep)).reshape(len(to_keep), len(to_keep)).transpose(0,1)
+                data['attribute_edge']=data['attribute_edge'][dist_mask].reshape(int(math.sqrt(len(data['attribute_edge'][dist_mask]))),
+                                                                                int(math.sqrt(len(data['attribute_edge'][dist_mask]))))
+                
+                new_val = []
+                for elem in graph.x[to_keep]:
+                    if elem > index:
+                        new_val.append(elem-1)
+                    else:
+                        new_val.append(elem)
+                
+                new_graph = SparseGraph(
+                x=			torch.tensor(new_val, device=graph.x.device),
+                edge_index=	new_edge_index,
+                edge_attr=	new_edge_attr,
+                y=			y,
+                **{df: data[df] for df in self.others_df}
+                )
+                
+                data[self.result_df] = new_graph
+                return data
+            
+            new_val = []
+            for elem in graph.x:
+                    if elem > 3:
+                        new_val.append(elem-1)
+                    else:
+                        new_val.append(elem)
+            
+            graph = SparseGraph(
+                x=			torch.tensor(new_val, device=graph.x.device),
+                edge_index=	data[self.edge_index_df],
+                edge_attr=	data[self.edge_attr_df],
+                y=			y,
+                **{df: data[df] for df in self.others_df}
+            )
+        
+        data[self.result_df] = graph
+
+        return data
+
+class DFToGraph_gdb13(DFBaseTransform):
+
+    def __init__(
+            self,
+            *others_df,
+            result_df: str,
+            nodes_df: str,
+            edge_index_df: str,
+            edge_attr_df: str,
+            targets_df: str,
+            atom_types: str,
+            remove_hydrogen: bool
+        ):
+
+        # datafield where to put the resulting graph
+        self.result_df = result_df
+
+        # main graph components
+        self.nodes_df = nodes_df
+        self.edge_index_df = edge_index_df
+        self.edge_attr_df = edge_attr_df
+        self.targets_df = targets_df
+
+        # other datafields
+        self.others_df = others_df
+
+        self.atom_types= atom_types
+        
+        self.remove_hydrogen = remove_hydrogen
+
+
+    def __call__(
+            self,
+            data: Dict,
+        ) -> Dict:
+        
+        if data['value_error']==False:
+            return data
+
+        try: 
+            y = data[self.targets_df]
+        except KeyError:
+            y=1
+
+        if not isinstance(y, torch.Tensor):
+            y = torch.tensor(y, dtype=torch.float)
+
+        graph = SparseGraph(
+            x=			data[self.nodes_df],
+            edge_index=	data[self.edge_index_df],
+            edge_attr=	data[self.edge_attr_df],
+            y=			y,
+            **{df: data[df] for df in self.others_df}
+        )
+        
+        data[self.result_df] = graph
+
+        return data
+    
+    @property
+    def input_df_list(self) -> List[str]:
+        return [
+            self.nodes_df,
+            self.edge_index_df,
+            self.edge_attr_df,
+            self.targets_df
+            ] + list(self.others_df)
+    @property
+    def output_df_list(self) -> List[str]:
+        return [self.result_df]
+
 class DFMolToSmiles(DFBaseTransform):
 
     def __init__(
