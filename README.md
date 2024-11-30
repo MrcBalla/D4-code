@@ -34,4 +34,5 @@ Regarding GDB13 only a random subset of the entire dataset is used, for reproduc
 
 ### Checkpoints
 
-Checkpoints are saved in a new directory ./checkpoints. The code is provided with best checkpoints used for experiments in both QM9 and GDB13 case. The file associated to the best checkpoints is called "best_*.ckpt". 
+Checkpoints are present in a shared folder on google drive (https://drive.google.com/drive/folders/1SO7mIvRe7mZjPZ8WF14Ygo6pyK5OY3-_?usp=sharing). To run them they should be downloaded and 
+placed in a ./checkpoints/ folder.

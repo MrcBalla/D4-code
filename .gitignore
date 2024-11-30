@@ -29,7 +29,6 @@ MANIFEST
 outputs/
 images/
 tb_logs/
-checkpoints*/
 wandb/
 *.json
 *.html
