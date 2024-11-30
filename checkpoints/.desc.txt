@@ -1,0 +1,1 @@
+The checkpoints downloaded from drive (best_qm9.ckpt and best_gdb13.ckpt) should be placed in this directory
