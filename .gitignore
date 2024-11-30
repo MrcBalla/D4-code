@@ -32,6 +32,7 @@ tb_logs/
 wandb/
 *.json
 *.html
+*.ckpt
 */graphops_c.c
 temp/
 tables/
