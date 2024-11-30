@@ -1,0 +1,14 @@
+name: gdb13
+root: gdb13
+download: null
+preprocess:
+    sanitize: false
+    kekulize: false
+    remove_hydrogens: true
+    tr_val_test_split: true
+    remove_nonsmiles: true
+    aromatic_bond : false
+    valid_split: 0.14
+    test_split: 0.1
+postprocess:
+    molecular: {}

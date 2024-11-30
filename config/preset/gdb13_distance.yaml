@@ -1,0 +1,5 @@
+# @package _global_
+defaults:
+ - override /task: gdb13
+ - override /method: distance_gdb13
+ - override /method/trainer: molecular_trainer

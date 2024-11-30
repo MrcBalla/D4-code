@@ -1,0 +1,5 @@
+# @package _global_
+defaults:
+ - override /task: qm9
+ - override /method: distance_qm9
+ - override /method/trainer: molecular_trainer

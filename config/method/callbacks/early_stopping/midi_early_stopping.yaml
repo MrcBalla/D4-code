@@ -1,0 +1,7 @@
+ModularEarlyStopping:
+    module_monitors:
+        loss:
+            monitor: 'valid/molecular_validity'
+            mode: max
+    verbose: true
+    patience: 10

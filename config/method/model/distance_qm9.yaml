@@ -1,0 +1,2 @@
+defaults:
+ - DistanceDenoisingDiffusionModel_qm9: default

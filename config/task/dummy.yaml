@@ -1,0 +1,3 @@
+defaults:
+  - dataset: community-small
+  - test: no_test

@@ -1,0 +1,6 @@
+defaults:
+  - dataloader: base_dataloader
+  - datatransform: to_undirected
+  - model: distance_qm9
+  - trainer: base_trainer
+  - callbacks: dist_callbacks

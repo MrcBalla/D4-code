@@ -1,0 +1,2 @@
+defaults:
+ - DistanceDenoisingDiffusionModel_gdb13: default

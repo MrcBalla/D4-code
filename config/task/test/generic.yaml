@@ -1,0 +1,7 @@
+graph:
+    metrics_list:
+        - graph_degree
+        - graph_clustering
+        - graph_spectre
+        - graph_gin
+    how_many_to_generate: ???

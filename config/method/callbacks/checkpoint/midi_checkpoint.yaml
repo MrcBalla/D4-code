@@ -1,0 +1,4 @@
+ModelCheckpoint:
+    monitor: 'denoise_ce_total'
+    mode: min
+    every_n_epochs: 1

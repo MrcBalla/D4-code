@@ -1,0 +1,6 @@
+defaults:
+  - dataloader: base_dataloader
+  - datatransform: to_undirected
+  - model: distance_gdb13
+  - trainer: base_trainer
+  - callbacks: dist_callbacks

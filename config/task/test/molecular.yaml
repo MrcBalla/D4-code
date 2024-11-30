@@ -1,0 +1,8 @@
+molecular:
+    metrics_list:
+        - molecular_validity
+        - molecular_uniqueness
+        - molecular_novelty
+        - bond_distance_metric
+    how_many_to_generate: 1024
+    relaxed: true
