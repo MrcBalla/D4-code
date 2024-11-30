@@ -25,12 +25,12 @@ The experiments can be run with different modality, the basic command is:
 ```
 where the value \<preset\> could be chosen between qm9_distance and gdb13_distance.
 After the \<preset\> it's possible to choose the \<seed\>, the modality of running \<mode\> between \<eval\>, \<train+eval\> and \<train\>. The default values are mode=eval and seed=0.
-All the parameters relative to the training and evaluation phase could be seen inside ./config/ folder.
+All the parameters relative to the training and evaluation phase could be seen inside ./config/.
 
 ### Datasets
 
 QM9 will be downloaded automatically to a new directory ./datasets when running an experiment. 
-Regarding GDB13 only a random subset of the entire dataset is used, for reproducibility, this could be found directly inside ./dataset/GDB13/raw/ folder.
+Regarding GDB13 only a random subset of the entire dataset is used, for reproducibility, this could be found directly inside ./dataset/GDB13/raw/ .
 
 ### Checkpoints
 
