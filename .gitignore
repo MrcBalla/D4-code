@@ -32,7 +32,6 @@ tb_logs/
 wandb/
 *.json
 *.html
-*.smi
 */graphops_c.c
 temp/
 tables/
