@@ -413,7 +413,7 @@ class GDB13PreprocessingPipeline:
             tr_val_test_split: bool=True,
             valid_split: int = 10000,
             test_split: int = 10000,
-            compute_one_hot: bool = True
+            compute_one_hot: bool = False
         ) -> base_t.DFPipeline:
 
 
