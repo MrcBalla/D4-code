@@ -1,6 +1,6 @@
 # D4: Distance Diffusion for a Truly Equivariant Molecular Design
 
-This is the code which was used to run the experiments for the paper "D4: Distance Diffusion for a Truly Equivariant Molecular Design".
+This is the code which was used to run the experiments for the paper "D4: Distance Diffusion for a Truly Equivariant Molecular Design". The paper has been accepted at ESANN 2025 - European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, Bruges, Belgium, 2025
 
 ## Requirements
 
